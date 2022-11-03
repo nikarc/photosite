@@ -1,0 +1,9 @@
+query Navigation {
+  navigations(first: 1) {
+    links(first: 5) {
+      text
+      url
+      id
+    }
+  }
+}
