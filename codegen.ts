@@ -1,17 +1,15 @@
-import type { CodegenConfig } from "@graphql-codegen/cli";
+import * as dotenv from "dotenv";
+dotenv.config();
+
+import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  overwrite: true,
-  schema:
-    "https://api-us-east-1.hygraph.com/v2/cla09p0nl3vpf01tb8swg6spi/master",
-  documents: "src/**/*.graphql",
+  schema: process.env.NEXT_PUBLIC_API_URL,
+  documents: ["src/**/*.tsx", "!src/gql/**/*"],
   generates: {
-    "src/gql/": {
+    "./src/gql/": {
       preset: "client",
       plugins: [],
-    },
-    "./graphql.schema.json": {
-      plugins: ["introspection"],
     },
   },
 };
