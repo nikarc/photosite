@@ -1,0 +1,10 @@
+.navigation {
+  flex: 1;
+  padding: 24px 0;
+}
+
+.navigation__list {
+  display: flex;
+  justify-content: center;
+  column-gap: 12px;
+}

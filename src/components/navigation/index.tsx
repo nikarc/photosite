@@ -3,6 +3,7 @@ import { graphql } from "src/gql";
 import NavLink from "./link";
 import client from "graphql-client";
 import { NavigationQuery } from "src/gql/graphql";
+import styles from "./navigation.module.css";
 
 const navigation = graphql(/* GraphQL */ `
   query Navigation {
@@ -18,9 +19,13 @@ export default function() {
   const { data } = useQuery(["navigation"], async () =>
     client.request<NavigationQuery | undefined>(navigation)
   );
+
   return (
-    <div>
-      {data && data.navigations[0].links.map((link) => <NavLink link={link} />)}
+    <div className={styles.navigation}>
+      <ul className={styles.navigation__list}>
+        {data &&
+          data.navigations[0].links.map((link) => <NavLink link={link} />)}
+      </ul>
     </div>
   );
 }
