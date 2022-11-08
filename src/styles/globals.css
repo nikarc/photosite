@@ -7,6 +7,7 @@ body {
 body {
   font-family: "PlayfarDisplay", serif;
   background-color: var(--color-background);
+  letter-spacing: 0.07em;
 }
 
 a {

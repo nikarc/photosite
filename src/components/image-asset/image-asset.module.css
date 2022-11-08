@@ -1,0 +1,11 @@
+.image_asset__wrap {
+  display: flex;
+  width: 100%;
+}
+
+.image_asset {
+  flex: auto;
+  width: 100%;
+  position: relative;
+  aspect-ratio: 1 / 1;
+}

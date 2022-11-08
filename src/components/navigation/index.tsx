@@ -21,13 +21,13 @@ export default function() {
   );
 
   return (
-    <div className={styles.navigation}>
+    <header className={styles.navigation}>
       <ul className={styles.navigation__list}>
         {data &&
           data.navigations[0].links.map((link, idx) => (
             <NavLink link={link} key={`${link.__typename}-${idx}`} />
           ))}
       </ul>
-    </div>
+    </header>
   );
 }

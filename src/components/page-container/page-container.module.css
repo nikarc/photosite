@@ -1,4 +1,7 @@
 .pageContainer {
   display: flex;
   flex-direction: column;
+  row-gap: 40px;
+  max-width: var(--container-max-width);
+  padding: 2em;
 }

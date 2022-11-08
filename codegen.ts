@@ -5,7 +5,7 @@ import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
   schema: process.env.NEXT_PUBLIC_API_URL,
-  documents: ["src/**/*.tsx", "!src/gql/**/*"],
+  documents: ["src/**/*.tsx", "pages/**/*.tsx", "!src/gql/**/*"],
   generates: {
     "./src/gql/": {
       preset: "client",
