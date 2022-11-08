@@ -791,7 +791,8 @@ export type Image = {
   id: Scalars['ID'];
   /** System stage field */
   stage: Stage;
-  tags: Array<Scalars['String']>;
+  /** Used to sort and filter images */
+  tag: Array<ImageTag>;
 };
 
 
@@ -818,7 +819,7 @@ export type ImageConnection = {
 
 export type ImageCreateInput = {
   file?: InputMaybe<AssetCreateOneInlineInput>;
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tag?: InputMaybe<Array<ImageTag>>;
 };
 
 export type ImageCreateManyInlineInput = {
@@ -889,22 +890,22 @@ export type ImageManyWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
   /** Matches if the field array contains *all* items provided to the filter and order does match */
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tag?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array contains *all* items provided to the filter */
-  tags_contains_all?: InputMaybe<Array<Scalars['String']>>;
+  tag_contains_all?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array does not contain any of the items provided to the filter */
-  tags_contains_none?: InputMaybe<Array<Scalars['String']>>;
+  tag_contains_none?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array contains at least one item provided to the filter */
-  tags_contains_some?: InputMaybe<Array<Scalars['String']>>;
+  tag_contains_some?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  tags_not?: InputMaybe<Array<Scalars['String']>>;
+  tag_not?: InputMaybe<Array<ImageTag>>;
 };
 
 export enum ImageOrderByInput {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
-  TagsAsc = 'tags_ASC',
-  TagsDesc = 'tags_DESC'
+  TagAsc = 'tag_ASC',
+  TagDesc = 'tag_DESC'
 }
 
 export type ImageParent = Page;
@@ -996,6 +997,12 @@ export type ImageResizeInput = {
   width?: InputMaybe<Scalars['Int']>;
 };
 
+/** Used to sort and filter images */
+export enum ImageTag {
+  BlackAndWhite = 'black_and_white',
+  Color = 'color'
+}
+
 /** Transformations for Images */
 export type ImageTransformationInput = {
   /** Resizes the image */
@@ -1004,7 +1011,7 @@ export type ImageTransformationInput = {
 
 export type ImageUpdateInput = {
   file?: InputMaybe<AssetUpdateOneInlineInput>;
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tag?: InputMaybe<Array<ImageTag>>;
 };
 
 export type ImageUpdateManyInlineInput = {
@@ -1019,7 +1026,7 @@ export type ImageUpdateManyInlineInput = {
 };
 
 export type ImageUpdateManyInput = {
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tag?: InputMaybe<Array<ImageTag>>;
 };
 
 export type ImageUpdateManyWithNestedWhereInput = {
@@ -1110,15 +1117,15 @@ export type ImageWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
   /** Matches if the field array contains *all* items provided to the filter and order does match */
-  tags?: InputMaybe<Array<Scalars['String']>>;
+  tag?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array contains *all* items provided to the filter */
-  tags_contains_all?: InputMaybe<Array<Scalars['String']>>;
+  tag_contains_all?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array does not contain any of the items provided to the filter */
-  tags_contains_none?: InputMaybe<Array<Scalars['String']>>;
+  tag_contains_none?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array contains at least one item provided to the filter */
-  tags_contains_some?: InputMaybe<Array<Scalars['String']>>;
+  tag_contains_some?: InputMaybe<Array<ImageTag>>;
   /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  tags_not?: InputMaybe<Array<Scalars['String']>>;
+  tag_not?: InputMaybe<Array<ImageTag>>;
 };
 
 /** References Image record uniquely */

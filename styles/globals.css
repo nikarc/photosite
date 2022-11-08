@@ -5,6 +5,7 @@ body {
 }
 
 body {
+  font-family: "PlayfarDisplay", serif;
   background-color: var(--color-background);
 }
 

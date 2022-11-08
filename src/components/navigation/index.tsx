@@ -24,7 +24,9 @@ export default function() {
     <div className={styles.navigation}>
       <ul className={styles.navigation__list}>
         {data &&
-          data.navigations[0].links.map((link) => <NavLink link={link} />)}
+          data.navigations[0].links.map((link, idx) => (
+            <NavLink link={link} key={`${link.__typename}-${idx}`} />
+          ))}
       </ul>
     </div>
   );
