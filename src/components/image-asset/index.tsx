@@ -3,7 +3,7 @@ import { FragmentType, graphql, useFragment } from "src/gql";
 import styles from "./image-asset.module.css";
 
 export const ImageFragment = graphql(/* GraphQL */ `
-  fragment ImageItem on Image {
+  fragment ImageFragment on Image {
     tag
     file {
       url

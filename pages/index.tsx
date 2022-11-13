@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import Navigation from "components/navigation";
 import client from "graphql-client";
-import Head from "components/head";
 import { graphql } from "src/gql";
-import styles from "styles/pages/home.module.css";
 import ImageAsset from "components/image-asset";
-import PageContainer from "components/page-container";
+import styles from "styles/pages/home.module.css";
+import Page from "components/page";
 
 const homepage = graphql(/* GraphQL */ `
   query homepage($slug: String!) {
     pages(first: 1, where: { seo: { slug: $slug } }) {
+      seo {
+        ...HeadItems
+      }
       images {
-        ...ImageItem
+        ...ImageFragment
       }
     }
   }
@@ -23,24 +24,17 @@ export default function Home() {
       slug: "home",
     })
   );
-  const pageData = data?.pages?.[0];
 
-  if (!pageData) return null;
+  const page = data?.pages?.[0];
+  if (!page) return (location.href = "/404");
 
   return (
-    <PageContainer>
-      <Navigation />
-      {/*<Head head={data} />*/}
-
-      <main>
-        {pageData.images && (
-          <div className={styles.image_wrap}>
-            {pageData.images.map((image, idx) => (
-              <ImageAsset image={image} key={`${image.__typename}-${idx}`} />
-            ))}
-          </div>
-        )}
-      </main>
-    </PageContainer>
+    <Page seo={page.seo}>
+      <div className={styles.image_wrap}>
+        {page.images.map((image) => (
+          <ImageAsset image={image} />
+        ))}
+      </div>
+    </Page>
   );
 }

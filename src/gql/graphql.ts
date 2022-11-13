@@ -829,6 +829,463 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+/** Represents the page footer */
+export type Footer = Node & {
+  __typename?: 'Footer';
+  /** The copyright text proceeding the © year text */
+  copyright?: Maybe<Scalars['String']>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<Footer>;
+  /** List of Footer versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** Footer links */
+  links: Array<Link>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+/** Represents the page footer */
+export type FooterCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** Represents the page footer */
+export type FooterDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+/** Represents the page footer */
+export type FooterHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+/** Represents the page footer */
+export type FooterLinksArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<LinkOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<LinkWhereInput>;
+};
+
+
+/** Represents the page footer */
+export type FooterPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** Represents the page footer */
+export type FooterScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+/** Represents the page footer */
+export type FooterUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type FooterConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: FooterWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type FooterConnection = {
+  __typename?: 'FooterConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<FooterEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type FooterCreateInput = {
+  copyright?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  links?: InputMaybe<LinkCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type FooterCreateManyInlineInput = {
+  /** Connect multiple existing Footer documents */
+  connect?: InputMaybe<Array<FooterWhereUniqueInput>>;
+  /** Create and connect multiple existing Footer documents */
+  create?: InputMaybe<Array<FooterCreateInput>>;
+};
+
+export type FooterCreateOneInlineInput = {
+  /** Connect one existing Footer document */
+  connect?: InputMaybe<FooterWhereUniqueInput>;
+  /** Create and connect one Footer document */
+  create?: InputMaybe<FooterCreateInput>;
+};
+
+/** An edge in a connection. */
+export type FooterEdge = {
+  __typename?: 'FooterEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Footer;
+};
+
+/** Identifies documents */
+export type FooterManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FooterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FooterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FooterWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  copyright?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  copyright_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  copyright_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  copyright_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  copyright_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  copyright_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  copyright_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  copyright_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  copyright_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  copyright_starts_with?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<FooterWhereStageInput>;
+  documentInStages_none?: InputMaybe<FooterWhereStageInput>;
+  documentInStages_some?: InputMaybe<FooterWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  links_every?: InputMaybe<LinkWhereInput>;
+  links_none?: InputMaybe<LinkWhereInput>;
+  links_some?: InputMaybe<LinkWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum FooterOrderByInput {
+  CopyrightAsc = 'copyright_ASC',
+  CopyrightDesc = 'copyright_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type FooterUpdateInput = {
+  copyright?: InputMaybe<Scalars['String']>;
+  links?: InputMaybe<LinkUpdateManyInlineInput>;
+};
+
+export type FooterUpdateManyInlineInput = {
+  /** Connect multiple existing Footer documents */
+  connect?: InputMaybe<Array<FooterConnectInput>>;
+  /** Create and connect multiple Footer documents */
+  create?: InputMaybe<Array<FooterCreateInput>>;
+  /** Delete multiple Footer documents */
+  delete?: InputMaybe<Array<FooterWhereUniqueInput>>;
+  /** Disconnect multiple Footer documents */
+  disconnect?: InputMaybe<Array<FooterWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Footer documents */
+  set?: InputMaybe<Array<FooterWhereUniqueInput>>;
+  /** Update multiple Footer documents */
+  update?: InputMaybe<Array<FooterUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Footer documents */
+  upsert?: InputMaybe<Array<FooterUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type FooterUpdateManyInput = {
+  copyright?: InputMaybe<Scalars['String']>;
+};
+
+export type FooterUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: FooterUpdateManyInput;
+  /** Document search */
+  where: FooterWhereInput;
+};
+
+export type FooterUpdateOneInlineInput = {
+  /** Connect existing Footer document */
+  connect?: InputMaybe<FooterWhereUniqueInput>;
+  /** Create and connect one Footer document */
+  create?: InputMaybe<FooterCreateInput>;
+  /** Delete currently connected Footer document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Footer document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Footer document */
+  update?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Footer document */
+  upsert?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
+};
+
+export type FooterUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: FooterUpdateInput;
+  /** Unique document search */
+  where: FooterWhereUniqueInput;
+};
+
+export type FooterUpsertInput = {
+  /** Create document if it didn't exist */
+  create: FooterCreateInput;
+  /** Update document if it exists */
+  update: FooterUpdateInput;
+};
+
+export type FooterUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: FooterUpsertInput;
+  /** Unique document search */
+  where: FooterWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type FooterWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Identifies documents */
+export type FooterWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FooterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FooterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FooterWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  copyright?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  copyright_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  copyright_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  copyright_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  copyright_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  copyright_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  copyright_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  copyright_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  copyright_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  copyright_starts_with?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<FooterWhereStageInput>;
+  documentInStages_none?: InputMaybe<FooterWhereStageInput>;
+  documentInStages_some?: InputMaybe<FooterWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  links_every?: InputMaybe<LinkWhereInput>;
+  links_none?: InputMaybe<LinkWhereInput>;
+  links_some?: InputMaybe<LinkWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type FooterWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FooterWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FooterWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FooterWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<FooterWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Footer record uniquely */
+export type FooterWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type Image = {
   __typename?: 'Image';
   file?: Maybe<Asset>;
@@ -1314,13 +1771,15 @@ export enum LinkOrderByInput {
   UrlDesc = 'url_DESC'
 }
 
-export type LinkParent = Navigation;
+export type LinkParent = Footer | Navigation;
 
 export type LinkParentConnectInput = {
+  Footer?: InputMaybe<FooterConnectInput>;
   Navigation?: InputMaybe<NavigationConnectInput>;
 };
 
 export type LinkParentCreateInput = {
+  Footer?: InputMaybe<FooterCreateInput>;
   Navigation?: InputMaybe<NavigationCreateInput>;
 };
 
@@ -1339,6 +1798,7 @@ export type LinkParentCreateOneInlineInput = {
 };
 
 export type LinkParentUpdateInput = {
+  Footer?: InputMaybe<FooterUpdateInput>;
   Navigation?: InputMaybe<NavigationUpdateInput>;
 };
 
@@ -1360,6 +1820,7 @@ export type LinkParentUpdateManyInlineInput = {
 };
 
 export type LinkParentUpdateManyWithNestedWhereInput = {
+  Footer?: InputMaybe<FooterUpdateManyWithNestedWhereInput>;
   Navigation?: InputMaybe<NavigationUpdateManyWithNestedWhereInput>;
 };
 
@@ -1379,18 +1840,22 @@ export type LinkParentUpdateOneInlineInput = {
 };
 
 export type LinkParentUpdateWithNestedWhereUniqueInput = {
+  Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
   Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueInput>;
 };
 
 export type LinkParentUpsertWithNestedWhereUniqueInput = {
+  Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
   Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueInput>;
 };
 
 export type LinkParentWhereInput = {
+  Footer?: InputMaybe<FooterWhereInput>;
   Navigation?: InputMaybe<NavigationWhereInput>;
 };
 
 export type LinkParentWhereUniqueInput = {
+  Footer?: InputMaybe<FooterWhereUniqueInput>;
   Navigation?: InputMaybe<NavigationWhereUniqueInput>;
 };
 
@@ -1579,6 +2044,8 @@ export type Mutation = {
    * @deprecated Asset mutations will be overhauled soon
    */
   createAsset?: Maybe<Asset>;
+  /** Create one footer */
+  createFooter?: Maybe<Footer>;
   /** Create one navigation */
   createNavigation?: Maybe<Navigation>;
   /** Create one page */
@@ -1587,6 +2054,8 @@ export type Mutation = {
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
+  /** Delete one footer from _all_ existing stages. Returns deleted document. */
+  deleteFooter?: Maybe<Footer>;
   /**
    * Delete many Asset documents
    * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
@@ -1594,6 +2063,13 @@ export type Mutation = {
   deleteManyAssets: BatchPayload;
   /** Delete many Asset documents, return deleted documents */
   deleteManyAssetsConnection: AssetConnection;
+  /**
+   * Delete many Footer documents
+   * @deprecated Please use the new paginated many mutation (deleteManyFootersConnection)
+   */
+  deleteManyFooters: BatchPayload;
+  /** Delete many Footer documents, return deleted documents */
+  deleteManyFootersConnection: FooterConnection;
   /**
    * Delete many Navigation documents
    * @deprecated Please use the new paginated many mutation (deleteManyNavigationsConnection)
@@ -1618,6 +2094,8 @@ export type Mutation = {
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
   /** Publish one asset */
   publishAsset?: Maybe<Asset>;
+  /** Publish one footer */
+  publishFooter?: Maybe<Footer>;
   /**
    * Publish many Asset documents
    * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
@@ -1625,6 +2103,13 @@ export type Mutation = {
   publishManyAssets: BatchPayload;
   /** Publish many Asset documents */
   publishManyAssetsConnection: AssetConnection;
+  /**
+   * Publish many Footer documents
+   * @deprecated Please use the new paginated many mutation (publishManyFootersConnection)
+   */
+  publishManyFooters: BatchPayload;
+  /** Publish many Footer documents */
+  publishManyFootersConnection: FooterConnection;
   /**
    * Publish many Navigation documents
    * @deprecated Please use the new paginated many mutation (publishManyNavigationsConnection)
@@ -1645,18 +2130,24 @@ export type Mutation = {
   publishPage?: Maybe<Page>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
+  /** Schedule to publish one footer */
+  schedulePublishFooter?: Maybe<Footer>;
   /** Schedule to publish one navigation */
   schedulePublishNavigation?: Maybe<Navigation>;
   /** Schedule to publish one page */
   schedulePublishPage?: Maybe<Page>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
+  /** Unpublish one footer from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishFooter?: Maybe<Footer>;
   /** Unpublish one navigation from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishNavigation?: Maybe<Navigation>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPage?: Maybe<Page>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
+  /** Unpublish one footer from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishFooter?: Maybe<Footer>;
   /**
    * Unpublish many Asset documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
@@ -1664,6 +2155,13 @@ export type Mutation = {
   unpublishManyAssets: BatchPayload;
   /** Find many Asset documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyAssetsConnection: AssetConnection;
+  /**
+   * Unpublish many Footer documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyFootersConnection)
+   */
+  unpublishManyFooters: BatchPayload;
+  /** Find many Footer documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyFootersConnection: FooterConnection;
   /**
    * Unpublish many Navigation documents
    * @deprecated Please use the new paginated many mutation (unpublishManyNavigationsConnection)
@@ -1684,6 +2182,8 @@ export type Mutation = {
   unpublishPage?: Maybe<Page>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
+  /** Update one footer */
+  updateFooter?: Maybe<Footer>;
   /**
    * Update many assets
    * @deprecated Please use the new paginated many mutation (updateManyAssetsConnection)
@@ -1691,6 +2191,13 @@ export type Mutation = {
   updateManyAssets: BatchPayload;
   /** Update many Asset documents */
   updateManyAssetsConnection: AssetConnection;
+  /**
+   * Update many footers
+   * @deprecated Please use the new paginated many mutation (updateManyFootersConnection)
+   */
+  updateManyFooters: BatchPayload;
+  /** Update many Footer documents */
+  updateManyFootersConnection: FooterConnection;
   /**
    * Update many navigations
    * @deprecated Please use the new paginated many mutation (updateManyNavigationsConnection)
@@ -1713,6 +2220,8 @@ export type Mutation = {
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
+  /** Upsert one footer */
+  upsertFooter?: Maybe<Footer>;
   /** Upsert one navigation */
   upsertNavigation?: Maybe<Navigation>;
   /** Upsert one page */
@@ -1722,6 +2231,11 @@ export type Mutation = {
 
 export type MutationCreateAssetArgs = {
   data: AssetCreateInput;
+};
+
+
+export type MutationCreateFooterArgs = {
+  data: FooterCreateInput;
 };
 
 
@@ -1745,6 +2259,11 @@ export type MutationDeleteAssetArgs = {
 };
 
 
+export type MutationDeleteFooterArgs = {
+  where: FooterWhereUniqueInput;
+};
+
+
 export type MutationDeleteManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
@@ -1757,6 +2276,21 @@ export type MutationDeleteManyAssetsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationDeleteManyFootersArgs = {
+  where?: InputMaybe<FooterManyWhereInput>;
+};
+
+
+export type MutationDeleteManyFootersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<FooterManyWhereInput>;
 };
 
 
@@ -1819,6 +2353,12 @@ export type MutationPublishAssetArgs = {
 };
 
 
+export type MutationPublishFooterArgs = {
+  to?: Array<Stage>;
+  where: FooterWhereUniqueInput;
+};
+
+
 export type MutationPublishManyAssetsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1840,6 +2380,24 @@ export type MutationPublishManyAssetsConnectionArgs = {
   to?: Array<Stage>;
   where?: InputMaybe<AssetManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishManyFootersArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<FooterManyWhereInput>;
+};
+
+
+export type MutationPublishManyFootersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<FooterManyWhereInput>;
 };
 
 
@@ -1902,6 +2460,14 @@ export type MutationSchedulePublishAssetArgs = {
 };
 
 
+export type MutationSchedulePublishFooterArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: FooterWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishNavigationArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
@@ -1925,6 +2491,14 @@ export type MutationScheduleUnpublishAssetArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: AssetWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishFooterArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: FooterWhereUniqueInput;
 };
 
 
@@ -1952,6 +2526,12 @@ export type MutationUnpublishAssetArgs = {
 };
 
 
+export type MutationUnpublishFooterArgs = {
+  from?: Array<Stage>;
+  where: FooterWhereUniqueInput;
+};
+
+
 export type MutationUnpublishManyAssetsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1971,6 +2551,24 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
   stage?: InputMaybe<Stage>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyFootersArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<FooterManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyFootersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<FooterManyWhereInput>;
 };
 
 
@@ -2028,6 +2626,12 @@ export type MutationUpdateAssetArgs = {
 };
 
 
+export type MutationUpdateFooterArgs = {
+  data: FooterUpdateInput;
+  where: FooterWhereUniqueInput;
+};
+
+
 export type MutationUpdateManyAssetsArgs = {
   data: AssetUpdateManyInput;
   where?: InputMaybe<AssetManyWhereInput>;
@@ -2042,6 +2646,23 @@ export type MutationUpdateManyAssetsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationUpdateManyFootersArgs = {
+  data: FooterUpdateManyInput;
+  where?: InputMaybe<FooterManyWhereInput>;
+};
+
+
+export type MutationUpdateManyFootersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: FooterUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<FooterManyWhereInput>;
 };
 
 
@@ -2100,6 +2721,12 @@ export type MutationUpdateScheduledReleaseArgs = {
 export type MutationUpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
+};
+
+
+export type MutationUpsertFooterArgs = {
+  upsert: FooterUpsertInput;
+  where: FooterWhereUniqueInput;
 };
 
 
@@ -3104,6 +3731,14 @@ export type Query = {
   assets: Array<Asset>;
   /** Retrieve multiple assets using the Relay connection interface */
   assetsConnection: AssetConnection;
+  /** Retrieve a single footer */
+  footer?: Maybe<Footer>;
+  /** Retrieve document version */
+  footerVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple footers */
+  footers: Array<Footer>;
+  /** Retrieve multiple footers using the Relay connection interface */
+  footersConnection: FooterConnection;
   /** Retrieve a single navigation */
   navigation?: Maybe<Navigation>;
   /** Retrieve document version */
@@ -3178,6 +3813,44 @@ export type QueryAssetsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<AssetWhereInput>;
+};
+
+
+export type QueryFooterArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: FooterWhereUniqueInput;
+};
+
+
+export type QueryFooterVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryFootersArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<FooterOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<FooterWhereInput>;
+};
+
+
+export type QueryFootersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<FooterOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<FooterWhereInput>;
 };
 
 
@@ -3469,7 +4142,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Navigation | Page;
+export type ScheduledOperationAffectedDocument = Asset | Footer | Navigation | Page;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -5328,12 +6001,17 @@ export type HomepageQueryVariables = Exact<{
 }>;
 
 
-export type HomepageQuery = { __typename?: 'Query', pages: Array<{ __typename?: 'Page', images: Array<(
+export type HomepageQuery = { __typename?: 'Query', pages: Array<{ __typename?: 'Page', seo: (
+      { __typename?: 'Seo' }
+      & { ' $fragmentRefs'?: { 'HeadItemsFragment': HeadItemsFragment } }
+    ), images: Array<(
       { __typename?: 'Image' }
-      & { ' $fragmentRefs'?: { 'ImageItemFragment': ImageItemFragment } }
+      & { ' $fragmentRefs'?: { 'ImageFragmentFragment': ImageFragmentFragment } }
     )> }> };
 
-export type ImageItemFragment = { __typename?: 'Image', tag: Array<ImageTag>, file?: { __typename?: 'Asset', url: string, description?: string | null } | null } & { ' $fragmentName'?: 'ImageItemFragment' };
+export type HeadItemsFragment = { __typename?: 'Seo', id: string, metaTitle: string, metaDescription?: string | null, noIndex?: boolean | null, slug?: string | null, ogImage?: { __typename?: 'Asset', id: string, url: string, description?: string | null } | null } & { ' $fragmentName'?: 'HeadItemsFragment' };
+
+export type ImageFragmentFragment = { __typename?: 'Image', tag: Array<ImageTag>, file?: { __typename?: 'Asset', url: string, description?: string | null } | null } & { ' $fragmentName'?: 'ImageFragmentFragment' };
 
 export type NavigationQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5345,7 +6023,8 @@ export type NavigationQuery = { __typename?: 'Query', navigations: Array<{ __typ
 
 export type LinkItemFragment = { __typename?: 'Link', text: string, url: string, id: string } & { ' $fragmentName'?: 'LinkItemFragment' };
 
-export const ImageItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tag"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode<ImageItemFragment, unknown>;
+export const HeadItemsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeadItems"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Seo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"noIndex"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"ogImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode<HeadItemsFragment, unknown>;
+export const ImageFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tag"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode<ImageFragmentFragment, unknown>;
 export const LinkItemFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]} as unknown as DocumentNode<LinkItemFragment, unknown>;
-export const HomepageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"homepage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"seo"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageItem"}}]}}]}}]}},...ImageItemFragmentDoc.definitions]} as unknown as DocumentNode<HomepageQuery, HomepageQueryVariables>;
+export const HomepageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"homepage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"seo"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadItems"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageFragment"}}]}}]}}]}},...HeadItemsFragmentDoc.definitions,...ImageFragmentFragmentDoc.definitions]} as unknown as DocumentNode<HomepageQuery, HomepageQueryVariables>;
 export const NavigationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Navigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"navigations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"links"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"5"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkItem"}}]}}]}}]}},...LinkItemFragmentDoc.definitions]} as unknown as DocumentNode<NavigationQuery, NavigationQueryVariables>;
