@@ -1,3 +1,4 @@
+import NextHead from "next/head";
 import { FragmentType, graphql, useFragment } from "src/gql";
 
 export const SeoFragment = graphql(/* GraphQL */ `
@@ -19,7 +20,7 @@ const Head = (props: { seo: FragmentType<typeof SeoFragment> }) => {
   const seo = useFragment(SeoFragment, props.seo);
 
   return (
-    <>
+    <NextHead>
       <title>{seo.metaTitle}</title>
       <meta name="description" content={seo.metaDescription ?? ""} />
       <meta
@@ -33,7 +34,7 @@ const Head = (props: { seo: FragmentType<typeof SeoFragment> }) => {
       />
       <meta property="og:description" content={seo.metaDescription ?? ""} />
       <meta property="og:image" content={seo.ogImage?.url} />
-    </>
+    </NextHead>
   );
 };
 

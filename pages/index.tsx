@@ -4,6 +4,8 @@ import { graphql } from "src/gql";
 import ImageAsset from "components/image-asset";
 import styles from "styles/pages/home.module.css";
 import Page from "components/page";
+import { GetStaticProps } from "next";
+import { HomepageQuery } from "src/gql/graphql";
 
 const homepage = graphql(/* GraphQL */ `
   query homepage($slug: String!) {
@@ -18,23 +20,38 @@ const homepage = graphql(/* GraphQL */ `
   }
 `);
 
-export default function Home() {
-  const { data } = useQuery(["homepage"], async () =>
-    client.request(homepage, {
-      slug: "home",
-    })
-  );
+const getHomepage = () =>
+  client.request(homepage, {
+    slug: "home",
+  });
 
-  const page = data?.pages?.[0];
-  if (!page) return (location.href = "/404");
+type PageProps = {
+  page: HomepageQuery;
+};
+
+export default function Home({ page }: PageProps) {
+  const { data } = useQuery(["homepage"], getHomepage, {
+    initialData: page,
+  });
+
+  const pageData = data?.pages?.[0];
+  if (!pageData) return null;
 
   return (
-    <Page seo={page.seo}>
+    <Page seo={pageData.seo}>
       <div className={styles.image_wrap}>
-        {page.images.map((image) => (
-          <ImageAsset image={image} />
+        {pageData.images.map((image, idx) => (
+          <ImageAsset image={image} key={idx} />
         ))}
       </div>
     </Page>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const page = await getHomepage();
+
+  return {
+    props: { page },
+  };
+};
