@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import client from "graphql-client";
 import { graphql } from "src/gql";
 import ImageAsset from "components/image-asset";
-import styles from "styles/pages/home.module.css";
+import styles from "styles/pages/home.module.scss";
 import Page from "components/page";
 import { GetStaticProps } from "next";
 import { HomepageQuery } from "src/gql/graphql";
