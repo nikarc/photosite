@@ -1,4 +1,17 @@
+// Breakpoints
 $breakpointMobile: 768px;
 $breakpointTablet: 1024px;
 $breakpointDesktop: 1200px;
 $breakpointLargeDesktop: 1440px;
+
+// Colors
+$black: #000;
+
+// z-index
+$zHeights: (
+  "below": -1,
+  "base": 1,
+  "above": 2,
+  "modal": 10,
+  "navigation": 999,
+);

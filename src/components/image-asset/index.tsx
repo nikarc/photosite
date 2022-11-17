@@ -1,33 +1,33 @@
-import Image from "next/image";
+import Asset, { ImageSize } from "components/asset";
+import LightBox from "components/light-box";
 import { FragmentType, graphql, useFragment } from "src/gql";
-import styles from "./image-asset.module.css";
+import styles from "./image-asset.module.scss";
 
 export const ImageFragment = graphql(/* GraphQL */ `
   fragment ImageFragment on Image {
     tag
     file {
-      url
-      description
+      id
     }
   }
 `);
 
-const ImageAsset = (props: { image: FragmentType<typeof ImageFragment> }) => {
-  const image = useFragment(ImageFragment, props.image);
-  const { url, description } = image.file ?? {};
+type Props = { image: FragmentType<typeof ImageFragment> };
+
+export default function ImageAsset({ image }: Props) {
+  const imageFragment = useFragment(ImageFragment, image);
+
+  if (!imageFragment.file) return null;
 
   return (
     <div className={styles.image_asset}>
-      {url && (
-        <Image
-          src={url}
-          alt={description ?? ""}
-          layout="fill"
-          objectFit="cover"
-        />
-      )}
+      <LightBox
+        fullSizeImage={
+          <Asset imageId={imageFragment.file.id} imageSize={ImageSize.Large} />
+        }
+      >
+        <Asset imageId={imageFragment.file.id} />
+      </LightBox>
     </div>
   );
-};
-
-export default ImageAsset;
+}
