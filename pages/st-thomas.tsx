@@ -6,6 +6,7 @@ import { Marsonry } from "components/masonry";
 import { ImageFragment } from "components/image-asset";
 import { useQuery } from "@tanstack/react-query";
 import PageContainer from "components/page-container";
+import Image from "next/image";
 
 const sttPage = graphql(/* GraphQL */ `
   query sttPage($slug: String!) {
@@ -13,7 +14,7 @@ const sttPage = graphql(/* GraphQL */ `
       seo {
         ...HeadItems
       }
-      images {
+      images(first: 12) {
         ...ImageFragment
       }
     }
@@ -30,10 +31,12 @@ type PageProps = {
 };
 
 const assetQuery = graphql(`
-  query imageAsset($id: ID!, $size: Int!) {
+  query sttImageAsset($id: ID!, $size: Int!) {
     asset(where: { id: $id }) {
       url(transformation: { image: { resize: { width: $size } } })
       description
+      width
+      height
     }
   }
 `);
@@ -53,7 +56,20 @@ const STTImage: React.FC<{ image: FragmentType<typeof ImageFragment> }> = ({
 
   if (!data?.asset?.url) return null;
 
-  return <img src={data?.asset?.url} />;
+  return (
+    <div
+      style={{
+        position: "relative",
+        aspectRatio: `${data.asset.width} / ${data.asset.height}`,
+      }}
+    >
+      <Image
+        src={data?.asset?.url}
+        alt={data.asset.description ?? ""}
+        layout="fill"
+      />
+    </div>
+  );
 };
 
 export default function SttPage({ data }: PageProps) {

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "yarn codegen && next dev",
     "dev:codegen": "concurrently -n next,codgen -c blue,magenta \"next dev\" \"yarn codegen\"",
     "build": "next build",
     "start": "next start",

@@ -5,8 +5,9 @@
 }
 
 .masonry_item {
+  page-break-inside: avoid;
   &,
-  img {
+  > * {
     width: 100%;
   }
 
