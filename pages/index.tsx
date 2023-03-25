@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import client from "graphql-client";
 import { graphql } from "src/gql";
-import ImageAsset from "components/image-asset";
 import styles from "styles/pages/home.module.scss";
 import Page from "components/page";
 import { GetStaticProps } from "next";
 import { HomepageQuery } from "src/gql/graphql";
+import Asset, { ImageSize } from "components/asset";
 
 const homepage = graphql(/* GraphQL */ `
   query homepage($slug: String!) {
@@ -40,9 +40,12 @@ export default function Home({ page }: PageProps) {
   return (
     <Page seo={pageData.seo}>
       <div className={styles.image_wrap}>
-        {pageData.images.map((image, idx) => (
-          <ImageAsset image={image} key={idx} />
-        ))}
+        <Asset
+          imageSize={ImageSize.Large}
+          image={
+            pageData.images[Math.floor(Math.random() * pageData.images.length)]
+          }
+        />
       </div>
     </Page>
   );

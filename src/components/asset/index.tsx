@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import styles from "./asset.module.scss";
+import { ImageAssetProps, ImageFragment } from "components/image-asset";
 import client from "graphql-client";
 import Image from "next/image";
-import { graphql } from "src/gql";
+import { graphql, useFragment } from "src/gql";
 
 export enum ImageSize {
   Thumbnail = 375,
@@ -10,8 +12,7 @@ export enum ImageSize {
 
 type Props = {
   imageSize?: ImageSize;
-  imageId: string;
-};
+} & ImageAssetProps;
 
 const assetQuery = graphql(`
   query imageAsset($id: ID!, $size: Int!) {
@@ -24,29 +25,33 @@ const assetQuery = graphql(`
 
 export default function Asset({
   imageSize = ImageSize.Thumbnail,
-  imageId,
+  image,
 }: Props) {
-  const { data } = useQuery([`asset-${imageId}`], () =>
-    client.request(assetQuery, {
-      id: imageId,
+  const imageFragment = useFragment(ImageFragment, image);
+
+  const { data } = useQuery([`asset-${imageFragment.file?.id}`], () => {
+    if (!imageFragment.file) return null;
+
+    return client.request(assetQuery, {
+      id: imageFragment.file.id,
       size: imageSize,
-    })
-  );
+    });
+  });
 
   const { asset } = data ?? {};
 
   if (!asset?.url) return null;
 
-  if (imageSize === ImageSize.Large) {
-    return <img src={asset.url} alt={asset.description ?? ""} />;
-  }
-
   return (
-    <Image
-      src={asset.url}
-      alt={asset.description ?? ""}
-      layout="fill"
-      objectFit="cover"
-    />
+    <div className={styles.asset_wrap}>
+      <Image
+        className={styles.image}
+        src={asset.url}
+        alt={asset.description ?? ""}
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+      />
+    </div>
   );
 }

@@ -1,0 +1,16 @@
+.masonry_wrap {
+  columns: 3 300px;
+  column-gap: 16px;
+  row-gap: 16px;
+}
+
+.masonry_item {
+  &,
+  img {
+    width: 100%;
+  }
+
+  & + & {
+    margin-bottom: 16px;
+  }
+}

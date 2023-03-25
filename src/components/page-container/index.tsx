@@ -1,4 +1,4 @@
-import styles from "./page-container.module.css";
+import styles from "./page-container.module.scss";
 
 const PageContainer: React.FC<{ children?: React.ReactNode }> = ({
   children,

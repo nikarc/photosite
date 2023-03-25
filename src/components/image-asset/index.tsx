@@ -12,21 +12,15 @@ export const ImageFragment = graphql(/* GraphQL */ `
   }
 `);
 
-type Props = { image: FragmentType<typeof ImageFragment> };
+export type ImageAssetProps = { image: FragmentType<typeof ImageFragment> };
 
-export default function ImageAsset({ image }: Props) {
-  const imageFragment = useFragment(ImageFragment, image);
-
-  if (!imageFragment.file) return null;
-
+export default function ImageAsset({ image }: ImageAssetProps) {
   return (
     <div className={styles.image_asset}>
       <LightBox
-        fullSizeImage={
-          <Asset imageId={imageFragment.file.id} imageSize={ImageSize.Large} />
-        }
+        fullSizeImage={<Asset image={image} imageSize={ImageSize.Large} />}
       >
-        <Asset imageId={imageFragment.file.id} />
+        <Asset image={image} />
       </LightBox>
     </div>
   );

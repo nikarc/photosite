@@ -4,6 +4,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 
 const documents = {
     "\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n": types.HomepageDocument,
+    "\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n": types.SttPageDocument,
     "\n  query imageAsset($id: ID!, $size: Int!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: $size } } })\n      description\n    }\n  }\n": types.ImageAssetDocument,
     "\n  fragment HeadItems on Seo {\n    id\n    metaTitle\n    metaDescription\n    noIndex\n    slug\n    ogImage {\n      id\n      url\n      description\n    }\n  }\n": types.HeadItemsFragmentDoc,
     "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n    }\n  }\n": types.ImageFragmentFragmentDoc,
@@ -12,6 +13,7 @@ const documents = {
 };
 
 export function graphql(source: "\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n"];
 export function graphql(source: "\n  query imageAsset($id: ID!, $size: Int!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: $size } } })\n      description\n    }\n  }\n"): (typeof documents)["\n  query imageAsset($id: ID!, $size: Int!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: $size } } })\n      description\n    }\n  }\n"];
 export function graphql(source: "\n  fragment HeadItems on Seo {\n    id\n    metaTitle\n    metaDescription\n    noIndex\n    slug\n    ogImage {\n      id\n      url\n      description\n    }\n  }\n"): (typeof documents)["\n  fragment HeadItems on Seo {\n    id\n    metaTitle\n    metaDescription\n    noIndex\n    slug\n    ogImage {\n      id\n      url\n      description\n    }\n  }\n"];
 export function graphql(source: "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n    }\n  }\n"): (typeof documents)["\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n    }\n  }\n"];

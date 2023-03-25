@@ -1,6 +1,6 @@
 import "styles/reset.css";
 import "styles/fonts.css";
-import "styles/globals.css";
+import "styles/globals.scss";
 import type { AppProps } from "next/app";
 import useTheme from "hooks/use-theme";
 import theme from "styles/theme";
