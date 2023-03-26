@@ -15,11 +15,5 @@
 
   & + & {
     margin-top: 16px;
-
-    @media screen and (max-width: $breakpointTablet) {
-      border-top: 1px solid rgba($gray, 0.3);
-      padding-top: 16px;
-      margin-top: 16px;
-    }
   }
 }
