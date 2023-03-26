@@ -62,6 +62,7 @@ const STTImage: React.FC<{
       style={{
         aspectRatio: `${data.asset.width} / ${data.asset.height}`,
         display: "flex",
+        paddingBottom: 50,
       }}
     >
       <p

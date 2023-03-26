@@ -1,3 +1,5 @@
+@import "styles/variables.scss";
+
 html,
 body {
   padding: 0;
@@ -28,7 +30,9 @@ a {
 }
 
 a:hover {
-  opacity: 0.5;
+  @media screen and (min-width: $breakpointTablet) {
+    opacity: 0.5;
+  }
 }
 
 * {
