@@ -31,9 +31,10 @@ type PageProps = {
 };
 
 const assetQuery = graphql(`
-  query sttImageAsset($id: ID!, $size: Int!) {
+  query sttImageAsset($id: ID!) {
     asset(where: { id: $id }) {
-      url(transformation: { image: { resize: { width: $size } } })
+      url(transformation: { image: { resize: { width: 6000 } } })
+      thumbnail: url(transformation: { image: { resize: { width: 1000 } } })
       description
       width
       height
@@ -50,7 +51,6 @@ const STTImage: React.FC<{ image: FragmentType<typeof ImageFragment> }> = ({
 
     return client.request(assetQuery, {
       id: imageFragment.file.id,
-      size: 5000,
     });
   });
 
@@ -65,7 +65,7 @@ const STTImage: React.FC<{ image: FragmentType<typeof ImageFragment> }> = ({
     >
       <a href={data?.asset?.url} rel="noopener noreferrer" target="_blank">
         <Image
-          src={data?.asset?.url}
+          src={data?.asset?.thumbnail}
           alt={data.asset.description ?? ""}
           layout="fill"
         />
