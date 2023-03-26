@@ -14,7 +14,7 @@ const sttPage = graphql(/* GraphQL */ `
       seo {
         ...HeadItems
       }
-      images(first: 12) {
+      images(first: 35) {
         ...ImageFragment
       }
     }
