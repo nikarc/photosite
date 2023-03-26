@@ -7,9 +7,11 @@
   row-gap: 40px;
   max-width: none;
   flex: 1;
+  padding: 0 24px;
 
   @media screen and (min-width: $breakpointTablet) {
     max-width: var(--container-max-width);
     margin: 0 auto;
+    padding: 0;
   }
 }

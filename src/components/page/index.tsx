@@ -5,14 +5,17 @@ import { SeoFragment } from "components/head";
 import { WithChildren } from "src/types";
 import { FragmentType } from "src/gql";
 
-type Props = { seo: FragmentType<typeof SeoFragment> } & WithChildren;
+type Props = {
+  seo: FragmentType<typeof SeoFragment>;
+  hideNavigation?: boolean;
+} & WithChildren;
 
-const Page = (props: Props) => {
+const Page = ({ children, seo, hideNavigation = false }: Props) => {
   return (
     <PageContainer>
-      <Navigation />
-      <Head seo={props.seo} />
-      {props.children}
+      {!hideNavigation && <Navigation />}
+      <Head seo={seo} />
+      {children}
     </PageContainer>
   );
 };

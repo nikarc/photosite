@@ -5,8 +5,8 @@ import { GetStaticProps } from "next";
 import { Marsonry } from "components/masonry";
 import { ImageFragment } from "components/image-asset";
 import { useQuery } from "@tanstack/react-query";
-import PageContainer from "components/page-container";
 import Image from "next/image";
+import Page from "components/page";
 
 const sttPage = graphql(/* GraphQL */ `
   query sttPage($slug: String!) {
@@ -14,7 +14,7 @@ const sttPage = graphql(/* GraphQL */ `
       seo {
         ...HeadItems
       }
-      images(first: 12) {
+      images(first: 35) {
         ...ImageFragment
       }
     }
@@ -63,11 +63,13 @@ const STTImage: React.FC<{ image: FragmentType<typeof ImageFragment> }> = ({
         aspectRatio: `${data.asset.width} / ${data.asset.height}`,
       }}
     >
-      <Image
-        src={data?.asset?.url}
-        alt={data.asset.description ?? ""}
-        layout="fill"
-      />
+      <a href={data?.asset?.url} rel="noopener noreferrer" target="_blank">
+        <Image
+          src={data?.asset?.url}
+          alt={data.asset.description ?? ""}
+          layout="fill"
+        />
+      </a>
     </div>
   );
 };
@@ -76,13 +78,13 @@ export default function SttPage({ data }: PageProps) {
   const page = data.pages[0];
 
   return (
-    <PageContainer>
+    <Page seo={page.seo} hideNavigation>
       <Marsonry>
         {page.images.map((image, idx) => (
           <STTImage key={idx} image={image} />
         ))}
       </Marsonry>
-    </PageContainer>
+    </Page>
   );
 }
 
