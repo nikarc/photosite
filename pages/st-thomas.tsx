@@ -33,7 +33,7 @@ type PageProps = {
 const assetQuery = graphql(`
   query sttImageAsset($id: ID!) {
     asset(where: { id: $id }) {
-      url(transformation: { image: { resize: { width: 6000 } } })
+      url(transformation: { image: { resize: { width: 3000 } } })
       thumbnail: url(transformation: { image: { resize: { width: 1000 } } })
       description
       width
@@ -42,9 +42,10 @@ const assetQuery = graphql(`
   }
 `);
 
-const STTImage: React.FC<{ image: FragmentType<typeof ImageFragment> }> = ({
-  image,
-}) => {
+const STTImage: React.FC<{
+  image: FragmentType<typeof ImageFragment>;
+  idx: number;
+}> = ({ image, idx }) => {
   const imageFragment = useFragment(ImageFragment, image);
   const { data } = useQuery([`asset-${imageFragment.file?.id}`], () => {
     if (!imageFragment.file) return null;
@@ -59,11 +60,34 @@ const STTImage: React.FC<{ image: FragmentType<typeof ImageFragment> }> = ({
   return (
     <div
       style={{
-        position: "relative",
         aspectRatio: `${data.asset.width} / ${data.asset.height}`,
+        display: "flex",
       }}
     >
-      <a href={data?.asset?.url} rel="noopener noreferrer" target="_blank">
+      <p
+        style={{
+          color: "white",
+          marginTop: 16,
+          marginBottom: 16,
+          marginRight: 4,
+          paddingRight: 8,
+          borderRight: "1px solid white",
+        }}
+      >
+        {idx + 1}
+      </p>
+      <a
+        href={data?.asset?.url}
+        rel="noopener noreferrer"
+        target="_blank"
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Image
           src={data?.asset?.thumbnail}
           alt={data.asset.description ?? ""}
@@ -81,7 +105,7 @@ export default function SttPage({ data }: PageProps) {
     <Page seo={page.seo} hideNavigation>
       <Marsonry>
         {page.images.map((image, idx) => (
-          <STTImage key={idx} image={image} />
+          <STTImage key={idx} idx={idx} image={image} />
         ))}
       </Marsonry>
     </Page>
