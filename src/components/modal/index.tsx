@@ -20,20 +20,39 @@ export default function Modal() {
   return (
     <AnimatePresence>
       {modalActive && (
-        <div className={styles.modal__wrap}>
-          <div
-            className={styles.modal__click_wrap}
-            onClick={onOverlayClick}
-          ></div>
-          <motion.div
-            initial={{ opacity: 0, translateY: "-25%" }}
-            animate={{ opacity: 1, translateY: "0%" }}
-            exit={{ opacity: 0 }}
-            className={styles.modal__inner_wrap}
-          >
-            {children}
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className={styles.modal__wrap}>
+            <div
+              className={styles.modal__click_wrap}
+              onClick={onOverlayClick}
+            ></div>
+            <span
+              className={`pi pi-plus ${styles.modal__close_button}`}
+              style={{ color: "white" }}
+              onClick={onOverlayClick}
+            />
+
+            <i
+              className={`pi pi-spin pi-spinner ${styles.modal__loading_icon}`}
+              style={{ fontSize: "2rem", color: "white" }}
+            />
+
+            <motion.div
+              initial={{ translateY: "-25%" }}
+              animate={{ translateY: "0%" }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className={styles.modal__inner_wrap}
+            >
+              {children}
+            </motion.div>
+          </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
