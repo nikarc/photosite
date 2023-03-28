@@ -1,0 +1,15 @@
+@import "styles/variables";
+
+.modal__image_wrap {
+  max-width: 90vw;
+  width: 90%;
+
+  @media (min-width: $breakpointDesktop) {
+    height: 90vh;
+    width: auto;
+  }
+}
+
+.modal__image {
+  object-fit: contain;
+}

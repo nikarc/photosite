@@ -25,19 +25,32 @@
 .modal__inner_wrap {
   position: relative;
   z-index: map-get($zHeights, "above");
-  width: 90%;
 
   img {
     width: 100%;
   }
 
   @media (min-width: $breakpointDesktop) {
-    width: auto;
-    height: 85vh;
-
     img {
       width: auto;
       height: 100%;
     }
   }
+}
+
+.modal__close_button {
+  color: white;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  transform: rotate(45deg);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal__loading_icon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

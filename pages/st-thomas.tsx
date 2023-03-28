@@ -1,4 +1,5 @@
 import { FragmentType, graphql, useFragment } from "src/gql";
+import "primeicons/primeicons.css";
 import client from "graphql-client";
 import { SttPageQuery } from "src/gql/graphql";
 import { GetStaticProps } from "next";
@@ -7,6 +8,8 @@ import { ImageFragment } from "components/image-asset";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Page from "components/page";
+import LightBox from "components/light-box";
+import styles from "styles/pages/st-thomas.module.scss";
 
 const sttPage = graphql(/* GraphQL */ `
   query sttPage($slug: String!) {
@@ -33,7 +36,7 @@ type PageProps = {
 const assetQuery = graphql(`
   query sttImageAsset($id: ID!) {
     asset(where: { id: $id }) {
-      url(transformation: { image: { resize: { width: 3000 } } })
+      url(transformation: { image: { resize: { width: 1500 } } })
       thumbnail: url(transformation: { image: { resize: { width: 1000 } } })
       description
       width
@@ -58,44 +61,54 @@ const STTImage: React.FC<{
   if (!data?.asset?.url) return null;
 
   return (
-    <div
-      style={{
-        aspectRatio: `${data.asset.width} / ${data.asset.height}`,
-        display: "flex",
-        paddingBottom: 50,
-      }}
-    >
-      <p
+    <>
+      <div
         style={{
-          color: "white",
-          marginTop: 16,
-          marginBottom: 16,
-          marginRight: 4,
-          paddingRight: 8,
-          borderRight: "1px solid white",
-        }}
-      >
-        {idx + 1}
-      </p>
-      <a
-        href={data?.asset?.url}
-        rel="noopener noreferrer"
-        target="_blank"
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
+          aspectRatio: `${data.asset.width} / ${data.asset.height}`,
           display: "flex",
-          flexDirection: "column",
+          paddingBottom: 50,
         }}
       >
-        <Image
-          src={data?.asset?.thumbnail}
-          alt={data.asset.description ?? ""}
-          layout="fill"
-        />
-      </a>
-    </div>
+        <p
+          style={{
+            color: "white",
+            marginTop: 16,
+            marginBottom: 16,
+            marginRight: 4,
+            paddingRight: 8,
+            borderRight: "1px solid white",
+          }}
+        >
+          {idx + 1}
+        </p>
+        <LightBox
+          style={{ width: "100%" }}
+          fullSizeImage={
+            <div
+              className={styles.modal__image_wrap}
+              style={{
+                aspectRatio: `${data.asset.width} / ${data.asset.height}`,
+              }}
+            >
+              <Image
+                className={styles.modal__image}
+                src={data?.asset?.url}
+                alt={data.asset.description ?? ""}
+                layout="fill"
+                placeholder="blur"
+                blurDataURL={data?.asset?.thumbnail}
+              />
+            </div>
+          }
+        >
+          <Image
+            src={data?.asset?.thumbnail}
+            alt={data.asset.description ?? ""}
+            layout="fill"
+          />
+        </LightBox>
+      </div>
+    </>
   );
 };
 
