@@ -36,7 +36,7 @@ type PageProps = {
 const assetQuery = graphql(`
   query sttImageAsset($id: ID!) {
     asset(where: { id: $id }) {
-      url(transformation: { image: { resize: { width: 1500 } } })
+      url(transformation: { image: { resize: { width: 6000 } } })
       thumbnail: url(transformation: { image: { resize: { width: 1000 } } })
       description
       width
@@ -95,8 +95,6 @@ const STTImage: React.FC<{
                 src={data?.asset?.url}
                 alt={data.asset.description ?? ""}
                 layout="fill"
-                placeholder="blur"
-                blurDataURL={data?.asset?.thumbnail}
               />
             </div>
           }
@@ -118,7 +116,7 @@ export default function SttPage({ data }: PageProps) {
   return (
     <Page seo={page.seo} hideNavigation>
       <Marsonry>
-        {page.images.map((image, idx) => (
+        {page.images.reverse().map((image, idx) => (
           <STTImage key={idx} idx={idx} image={image} />
         ))}
       </Marsonry>

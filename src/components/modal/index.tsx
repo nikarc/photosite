@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ModalContext from "src/contexts/modal";
 
@@ -16,6 +16,19 @@ export default function Modal() {
     setModalChildren?.(null);
     setModalActive?.(false);
   };
+
+  useEffect(() => {
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Esc") {
+        setModalChildren?.(null);
+        setModalActive?.(false);
+      }
+    };
+
+    document.addEventListener("keydown", onEscape);
+
+    return () => document.removeEventListener("keydown", onEscape);
+  }, [setModalActive]);
 
   return (
     <AnimatePresence>
