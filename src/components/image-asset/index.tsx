@@ -8,6 +8,7 @@ export const ImageFragment = graphql(/* GraphQL */ `
     tag
     file {
       id
+      updatedAt
     }
   }
 `);

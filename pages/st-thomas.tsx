@@ -18,6 +18,9 @@ const sttPage = graphql(/* GraphQL */ `
         ...HeadItems
       }
       images(first: 35) {
+        ... on Image {
+          file {updatedAt}
+        }
         ...ImageFragment
       }
     }
@@ -116,9 +119,11 @@ export default function SttPage({ data }: PageProps) {
   return (
     <Page seo={page.seo} hideNavigation>
       <Marsonry>
-        {page.images.reverse().map((image, idx) => (
-          <STTImage key={idx} idx={idx} image={image} />
-        ))}
+        {page.images.sort((a, b) =>
+          new Date(a.file?.updatedAt) < new Date(b.file?.updatedAt) ? 1 : -1)
+          .map((image, idx) => (
+            <STTImage key={idx} idx={idx} image={image} />
+          ))}
       </Marsonry>
     </Page>
   );
