@@ -14,11 +14,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n": types.HomepageDocument,
-    "\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images(first: 35) {\n        ...ImageFragment\n      }\n    }\n  }\n": types.SttPageDocument,
+    "\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images(first: 35) {\n        ... on Image {\n          file {updatedAt}\n        }\n        ...ImageFragment\n      }\n    }\n  }\n": types.SttPageDocument,
     "\n  query sttImageAsset($id: ID!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: 6000 } } })\n      thumbnail: url(transformation: { image: { resize: { width: 1000 } } })\n      description\n      width\n      height\n    }\n  }\n": types.SttImageAssetDocument,
     "\n  query imageAsset($id: ID!, $size: Int!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: $size } } })\n      description\n    }\n  }\n": types.ImageAssetDocument,
     "\n  fragment HeadItems on Seo {\n    id\n    metaTitle\n    metaDescription\n    noIndex\n    slug\n    ogImage {\n      id\n      url\n      description\n    }\n  }\n": types.HeadItemsFragmentDoc,
-    "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n    }\n  }\n": types.ImageFragmentFragmentDoc,
+    "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n      updatedAt\n    }\n  }\n": types.ImageFragmentFragmentDoc,
     "\n  query Navigation {\n    navigations(first: 1) {\n      links(first: 5) {\n        ...LinkItem\n      }\n    }\n  }\n": types.NavigationDocument,
     "\n  fragment LinkItem on Link {\n    text\n    url\n    id\n  }\n": types.LinkItemFragmentDoc,
 };
@@ -44,7 +44,7 @@ export function graphql(source: "\n  query homepage($slug: String!) {\n    pages
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images(first: 35) {\n        ...ImageFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images(first: 35) {\n        ...ImageFragment\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images(first: 35) {\n        ... on Image {\n          file {updatedAt}\n        }\n        ...ImageFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images(first: 35) {\n        ... on Image {\n          file {updatedAt}\n        }\n        ...ImageFragment\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -60,7 +60,7 @@ export function graphql(source: "\n  fragment HeadItems on Seo {\n    id\n    me
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n    }\n  }\n"): (typeof documents)["\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n    }\n  }\n"];
+export function graphql(source: "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n      updatedAt\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
