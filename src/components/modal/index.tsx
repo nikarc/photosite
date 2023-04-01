@@ -27,8 +27,10 @@ export default function Modal() {
 
     document.addEventListener("keydown", onEscape);
 
+    window.document.body.style.overflow = modalActive ? "hidden" : "auto";
+
     return () => document.removeEventListener("keydown", onEscape);
-  }, [setModalActive]);
+  }, [setModalActive, modalActive]);
 
   return (
     <AnimatePresence>
