@@ -1,7 +1,10 @@
+import { WithChildren, WithClassName } from "src/types";
 import styles from "./page-container.module.scss";
 
-const PageContainer: React.FC<{ children?: React.ReactNode }> = ({
-  children,
-}) => <div className={styles.pageContainer}>{children}</div>;
+type Props = WithChildren & WithClassName;
+
+const PageContainer: React.FC<Props> = ({ children, className }) => (
+  <div className={`${styles.pageContainer} ${className}`}>{children}</div>
+);
 
 export default PageContainer;
