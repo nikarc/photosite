@@ -37,17 +37,19 @@ export default function Home({ page }: PageProps) {
   const pageData = data?.pages?.[0];
   if (!pageData) return null;
 
+  const image =
+    pageData.images[Math.floor(Math.random() * pageData.images.length)];
+
   return (
-    <Page seo={pageData.seo}>
-      <div className={styles.image_wrap}>
-        <Asset
-          imageSize={ImageSize.Large}
-          image={
-            pageData.images[Math.floor(Math.random() * pageData.images.length)]
-          }
-        />
-      </div>
-    </Page>
+    <Page
+      fullWidthChildren={
+        <div className={styles.image_wrap}>
+          <Asset imageSize={ImageSize.Large} image={image} />
+        </div>
+      }
+      hideNavigation
+      seo={pageData.seo}
+    />
   );
 }
 

@@ -1,5 +1,9 @@
 import { SetStateAction, Dispatch, ReactNode } from "react";
 
+export type WithClassName = {
+  className?: string;
+};
+
 export type WithChildren = {
   children?: React.ReactNode;
 };
