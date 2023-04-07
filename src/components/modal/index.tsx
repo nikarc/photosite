@@ -42,10 +42,6 @@ export default function Modal() {
           transition={{ duration: 0.3 }}
         >
           <div className={styles.modal__wrap}>
-            <div
-              className={styles.modal__click_wrap}
-              onClick={onOverlayClick}
-            ></div>
             <span
               className={`pi pi-plus ${styles.modal__close_button}`}
               style={{ color: "white" }}
@@ -66,6 +62,10 @@ export default function Modal() {
             >
               {children}
             </motion.div>
+            <div
+              className={styles.modal__click_wrap}
+              onClick={onOverlayClick}
+            ></div>
           </div>
         </motion.div>
       )}
