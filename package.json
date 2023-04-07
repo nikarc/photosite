@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "yarn codegen && next dev",
     "dev:codegen": "concurrently -n next,codgen -c blue,magenta \"next dev\" \"yarn codegen\"",
-    "build": "next build",
+    "build": "yarn codegen && next build",
     "start": "next start",
     "lint": "next lint",
     "codegen": "graphql-codegen --config codegen.ts"
