@@ -7,6 +7,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: NEXT_TRUSTED_DOMAINS.split(","),
+    minimumCacheTTL: 60,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
