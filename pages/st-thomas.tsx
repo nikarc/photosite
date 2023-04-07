@@ -42,7 +42,7 @@ const assetQuery = graphql(`
   query sttImageAsset($id: ID!) {
     asset(where: { id: $id }) {
       url(transformation: { image: { resize: { width: 3000 } } })
-      thumbnail: url(transformation: { image: { resize: { width: 450 } } })
+      thumbnail: url(transformation: { image: { resize: { width: 650 } } })
       description
       width
       height
