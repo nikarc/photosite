@@ -70,6 +70,8 @@ const STTImage: React.FC<{
     idx === 1 ||
     idx === 16 ||
     idx === 17 ||
+    idx === 22 ||
+    idx === 23 ||
     idx === 29 ||
     idx === 30;
 

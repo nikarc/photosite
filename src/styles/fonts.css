@@ -3,4 +3,5 @@
   src: url("/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
 }
