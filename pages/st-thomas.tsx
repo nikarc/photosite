@@ -41,8 +41,8 @@ type PageProps = {
 const assetQuery = graphql(`
   query sttImageAsset($id: ID!) {
     asset(where: { id: $id }) {
-      url(transformation: { image: { resize: { width: 6000 } } })
-      thumbnail: url(transformation: { image: { resize: { width: 1000 } } })
+      url(transformation: { image: { resize: { width: 3000 } } })
+      thumbnail: url(transformation: { image: { resize: { width: 450 } } })
       description
       width
       height
@@ -64,6 +64,14 @@ const STTImage: React.FC<{
   });
 
   if (!data?.asset?.url) return null;
+
+  const shouldPrioritizeImage = (idx: number) =>
+    idx === 0 ||
+    idx === 1 ||
+    idx === 16 ||
+    idx === 17 ||
+    idx === 29 ||
+    idx === 30;
 
   return (
     <>
@@ -108,6 +116,7 @@ const STTImage: React.FC<{
             src={data?.asset?.thumbnail}
             alt={data.asset.description ?? ""}
             layout="fill"
+            priority={shouldPrioritizeImage(idx)}
           />
         </LightBox>
       </div>
