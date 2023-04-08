@@ -5,8 +5,11 @@ $breakpointDesktop: 1200px;
 $breakpointLargeDesktop: 1440px;
 
 // Colors
+$white: #fff;
 $black: #000;
 $gray: #ccc;
+$colorPrimary: $white;
+$colorSecondary: $black;
 
 // z-index
 $zHeights: (
@@ -16,3 +19,27 @@ $zHeights: (
   "modal": 10,
   "navigation": 999,
 );
+
+// Typography
+$fontSizes: (
+  "base": 16px,
+  "small": 14px,
+  "large": 18px,
+  "xlarge": 24px,
+  "xxlarge": 32px,
+  "xxxlarge": 48px,
+);
+
+$lineHeights: (
+  "base": 1.5,
+  "small": 1.2,
+  "large": 1.8,
+  "xlarge": 2,
+  "xxlarge": 2.5,
+  "xxxlarge": 3,
+);
+
+@mixin textSize($size: "base") {
+  font-size: map-get($fontSizes, $size);
+  line-height: map-get($lineHeights, $size);
+}

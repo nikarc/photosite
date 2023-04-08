@@ -19,6 +19,7 @@ const documents = {
     "\n  query imageAsset($id: ID!, $size: Int!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: $size } } })\n      description\n    }\n  }\n": types.ImageAssetDocument,
     "\n  fragment HeadItems on Seo {\n    id\n    metaTitle\n    metaDescription\n    noIndex\n    slug\n    ogImage {\n      id\n      url\n      description\n    }\n  }\n": types.HeadItemsFragmentDoc,
     "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n      updatedAt\n    }\n  }\n": types.ImageFragmentFragmentDoc,
+    "\n  fragment SeoItem on Seo {\n    metaTitle\n  }\n": types.SeoItemFragmentDoc,
     "\n  query Navigation {\n    navigations(first: 1) {\n      links(first: 5) {\n        ...LinkItem\n      }\n    }\n  }\n": types.NavigationDocument,
     "\n  fragment LinkItem on Link {\n    text\n    url\n    id\n  }\n": types.LinkItemFragmentDoc,
 };
@@ -61,6 +62,10 @@ export function graphql(source: "\n  fragment HeadItems on Seo {\n    id\n    me
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n      updatedAt\n    }\n  }\n"): (typeof documents)["\n  fragment ImageFragment on Image {\n    tag\n    file {\n      id\n      updatedAt\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment SeoItem on Seo {\n    metaTitle\n  }\n"): (typeof documents)["\n  fragment SeoItem on Seo {\n    metaTitle\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

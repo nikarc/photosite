@@ -5,26 +5,30 @@ import PageContainer from "components/page-container";
 import { SeoFragment } from "components/head";
 import { WithChildren } from "src/types";
 import { FragmentType } from "src/gql";
+import styles from "./page.module.scss";
 
 type Props = {
   seo: FragmentType<typeof SeoFragment>;
   hideNavigation?: boolean;
   fullWidthChildren?: React.ReactNode;
+  hero?: React.ReactNode;
 } & WithChildren;
 
 const Page = ({
   children,
-  seo,
-  hideNavigation = false,
   fullWidthChildren,
+  hero,
+  hideNavigation = false,
+  seo,
 }: Props) => {
   return (
     <>
       <Head seo={seo} />
       {!hideNavigation && (
-        <PageContainer>
+        <div className={styles.hero__wrap}>
           <Navigation />
-        </PageContainer>
+          {hero}
+        </div>
       )}
       {React.Children.count(children) > 0 && (
         <PageContainer>{children}</PageContainer>

@@ -1,7 +1,5 @@
 import NextHead from "next/head";
 import { FragmentType, graphql, useFragment } from "src/gql";
-import styles from "../styles/global.module.scss";
-import PageContainer from "./page-container";
 
 export const SeoFragment = graphql(/* GraphQL */ `
   fragment HeadItems on Seo {
@@ -38,9 +36,6 @@ const Head = (props: { seo: FragmentType<typeof SeoFragment> }) => {
         <meta property="og:description" content={seo.metaDescription ?? ""} />
         <meta property="og:image" content={seo.ogImage?.url} />
       </NextHead>
-      <PageContainer>
-        <h1 className={styles.page_title}>{seo.metaTitle}</h1>
-      </PageContainer>
     </>
   );
 };
