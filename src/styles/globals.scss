@@ -1,5 +1,10 @@
 @import "styles/variables.scss";
 
+:root {
+  --scroll-margin: unset;
+  --nav-width: 300px;
+}
+
 html,
 body {
   padding: 0;
@@ -14,13 +19,18 @@ body {
   height: calc(100%);
   display: flex;
   flex-direction: column;
+  scroll-margin: var(--scroll-margin);
+  overflow: hidden;
 }
 
 #__next {
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+
+  > div {
+    height: 100vh;
+    scroll-snap-align: start;
+  }
 }
 
 a {

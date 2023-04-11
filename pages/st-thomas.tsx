@@ -1,5 +1,4 @@
 import { FragmentType, graphql, useFragment } from "src/gql";
-import "primeicons/primeicons.css";
 import client from "graphql-client";
 import { SttPageQuery } from "src/gql/graphql";
 import { GetStaticProps } from "next";

@@ -27,7 +27,13 @@ export default function Modal() {
 
     document.addEventListener("keydown", onEscape);
 
-    window.document.body.style.overflow = modalActive ? "hidden" : "auto";
+    const scrollableElement: HTMLElement = window.document.querySelector(
+      "#__next"
+    ) as HTMLElement;
+
+    if (scrollableElement) {
+      scrollableElement.style.overflow = modalActive ? "hidden" : "auto";
+    }
 
     return () => document.removeEventListener("keydown", onEscape);
   }, [setModalActive, modalActive]);

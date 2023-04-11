@@ -9,11 +9,24 @@ export const LinkFragment = graphql(/* GraphQL */ `
   }
 `);
 
-const NavLink = (props: { link: FragmentType<typeof LinkFragment> }) => {
+type Props = {
+  link: FragmentType<typeof LinkFragment>;
+  isMini?: boolean;
+};
+
+const NavLink = (props: Props) => {
   const link = useFragment(LinkFragment, props.link);
+
   return (
     <a href={link.url} className={styles.link}>
-      {link.text}
+      {props.isMini
+        ? link.text
+          .replace(/and/g, "&")
+          .toUpperCase()
+          .split(" ")
+          .map((word) => word.charAt(0))
+          .join(" ")
+        : link.text}
     </a>
   );
 };

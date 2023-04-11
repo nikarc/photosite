@@ -17,7 +17,8 @@ $zHeights: (
   "base": 1,
   "above": 2,
   "modal": 10,
-  "navigation": 999,
+  "navigation": 100,
+  "max": 9999,
 );
 
 // Typography
@@ -38,6 +39,8 @@ $lineHeights: (
   "xxlarge": 2.5,
   "xxxlarge": 3,
 );
+
+$speedNormal: 0.3s;
 
 @mixin textSize($size: "base") {
   font-size: map-get($fontSizes, $size);

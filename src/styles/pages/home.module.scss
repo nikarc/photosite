@@ -3,8 +3,5 @@
 .image_wrap {
   display: flex;
   width: 100vw;
-
-  @media screen and (min-width: $breakpointTablet) {
-    flex: 1;
-  }
+  height: 100vh;
 }

@@ -1,0 +1,33 @@
+@import "styles/variables";
+$trayHeight: 80px;
+
+@mixin backgroundColor {
+  background-color: rgba($colorSecondary, 0.875);
+  backdrop-filter: blur(5px);
+}
+
+.image_tray {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: map-get($zHeights, "max");
+  width: 100%;
+  height: $trayHeight;
+  @include backgroundColor;
+  display: flex;
+}
+
+.image_tray__tab {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, calc(-100% + 8px));
+  width: 50px;
+  height: 30px;
+  color: $colorPrimary;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px 30px 0 0;
+  padding-top: 10px;
+  @include backgroundColor;
+}

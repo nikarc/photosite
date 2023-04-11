@@ -44,7 +44,7 @@ export default function Home({ page }: PageProps) {
       hero={<Asset imageSize={ImageSize.Large} image={heroImage} />}
       fullWidthChildren={
         <>
-          {pageData.images.slice(0).map((image, idx) => (
+          {pageData.images.map((image, idx) => (
             <div className={styles.image_wrap} key={idx}>
               <Asset imageSize={ImageSize.Large} image={image} />
             </div>

@@ -7,18 +7,18 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 300px;
+  width: var(--nav-width);
   height: 100%;
   z-index: map-get($zHeights, "navigation");
   background-color: rgba($colorSecondary, 0.875);
   backdrop-filter: blur(5px);
   color: $colorPrimary;
+  transition: width $speedNormal;
 }
 
 .navigation__list {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
 }
 
 .page_title {
