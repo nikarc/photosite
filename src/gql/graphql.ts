@@ -33,7 +33,7 @@ export type Aggregate = {
 };
 
 /** Asset system model */
-export type Asset = Node & {
+export type Asset = Entity & Node & {
   __typename?: 'Asset';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -833,8 +833,48 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+/** An object with an ID */
+export type Entity = {
+  /** The id of the object. */
+  id: Scalars['ID'];
+  /** The Stage of an object */
+  stage: Stage;
+};
+
+/** This enumeration holds all typenames that implement the Entity interface. Components and models implement the Entity interface. */
+export enum EntityTypeName {
+  /** Asset system model */
+  Asset = 'Asset',
+  /** Represents the page footer */
+  Footer = 'Footer',
+  Image = 'Image',
+  Link = 'Link',
+  /** Represents the navigation */
+  Navigation = 'Navigation',
+  /** Represents a page */
+  Page = 'Page',
+  /** Scheduled Operation system model */
+  ScheduledOperation = 'ScheduledOperation',
+  /** Scheduled Release system model */
+  ScheduledRelease = 'ScheduledRelease',
+  /** All fields necessary for SEO */
+  Seo = 'Seo',
+  /** User system model */
+  User = 'User'
+}
+
+/** Allows to specify input to query models and components directly */
+export type EntityWhereInput = {
+  /** The ID of an object */
+  id: Scalars['ID'];
+  locale?: InputMaybe<Locale>;
+  stage: Stage;
+  /** The Type name of an object */
+  typename: EntityTypeName;
+};
+
 /** Represents the page footer */
-export type Footer = Node & {
+export type Footer = Entity & Node & {
   __typename?: 'Footer';
   /** The copyright text proceeding the © year text */
   copyright?: Maybe<Scalars['String']>;
@@ -1295,7 +1335,7 @@ export type FooterWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Image = {
+export type Image = Entity & {
   __typename?: 'Image';
   file?: Maybe<Asset>;
   /** The unique identifier */
@@ -1645,7 +1685,7 @@ export type ImageWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Link = {
+export type Link = Entity & {
   __typename?: 'Link';
   /** The unique identifier */
   id: Scalars['ID'];
@@ -2752,7 +2792,7 @@ export type MutationUpsertPageArgs = {
 };
 
 /** Represents the navigation */
-export type Navigation = Node & {
+export type Navigation = Entity & Node & {
   __typename?: 'Navigation';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -3178,7 +3218,7 @@ export type Node = {
 };
 
 /** Represents a page */
-export type Page = Node & {
+export type Page = Entity & Node & {
   __typename?: 'Page';
   content?: Maybe<Scalars['String']>;
   /** The time the document was created */
@@ -3760,6 +3800,8 @@ export type Query = {
   assets: Array<Asset>;
   /** Retrieve multiple assets using the Relay connection interface */
   assetsConnection: AssetConnection;
+  /** Fetches an object given its ID */
+  entities?: Maybe<Array<Entity>>;
   /** Retrieve a single footer */
   footer?: Maybe<Footer>;
   /** Retrieve document version */
@@ -3842,6 +3884,12 @@ export type QueryAssetsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<AssetWhereInput>;
+};
+
+
+export type QueryEntitiesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  where: Array<EntityWhereInput>;
 };
 
 
@@ -4095,7 +4143,7 @@ export type RichText = {
 };
 
 /** Scheduled Operation system model */
-export type ScheduledOperation = Node & {
+export type ScheduledOperation = Entity & Node & {
   __typename?: 'ScheduledOperation';
   affectedDocuments: Array<ScheduledOperationAffectedDocument>;
   /** The time the document was created */
@@ -4530,7 +4578,7 @@ export type ScheduledOperationWhereUniqueInput = {
 };
 
 /** Scheduled Release system model */
-export type ScheduledRelease = Node & {
+export type ScheduledRelease = Entity & Node & {
   __typename?: 'ScheduledRelease';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -5110,7 +5158,7 @@ export type ScheduledReleaseWhereUniqueInput = {
 };
 
 /** All fields necessary for SEO */
-export type Seo = {
+export type Seo = Entity & {
   __typename?: 'Seo';
   /** The unique identifier */
   id: Scalars['ID'];
@@ -5570,7 +5618,7 @@ export type UnpublishLocaleInput = {
 };
 
 /** User system model */
-export type User = Node & {
+export type User = Entity & Node & {
   __typename?: 'User';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
