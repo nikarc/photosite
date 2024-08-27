@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n": types.HomepageDocument,
+    "\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n    }\n  }\n": types.HomepageDocument,
     "\n  query sttPage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images(first: 40) {\n        ... on Image {\n          file {\n            updatedAt\n          }\n        }\n        ...ImageFragment\n      }\n    }\n  }\n": types.SttPageDocument,
     "\n  query sttImageAsset($id: ID!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: 3000 } } })\n      thumbnail: url(transformation: { image: { resize: { width: 650 } } })\n      description\n      width\n      height\n    }\n  }\n": types.SttImageAssetDocument,
     "\n  query imageAsset($id: ID!, $size: Int!) {\n    asset(where: { id: $id }) {\n      url(transformation: { image: { resize: { width: $size } } })\n      description\n    }\n  }\n": types.ImageAssetDocument,
@@ -40,7 +40,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n"): (typeof documents)["\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n      images {\n        ...ImageFragment\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n    }\n  }\n"): (typeof documents)["\n  query homepage($slug: String!) {\n    pages(first: 1, where: { seo: { slug: $slug } }) {\n      seo {\n        ...HeadItems\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

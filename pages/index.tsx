@@ -13,9 +13,6 @@ const homepage = graphql(/* GraphQL */ `
       seo {
         ...HeadItems
       }
-      images {
-        ...ImageFragment
-      }
     }
   }
 `);
@@ -30,21 +27,24 @@ type PageProps = {
 };
 
 export default function Home({ page }: PageProps) {
-  const { data } = useQuery(["homepage"], getHomepage, {
+  const { data } = useQuery({
+    queryKey: ["homepage"],
+    queryFn: getHomepage,
     initialData: page,
   });
 
   const pageData = data?.pages?.[0];
   if (!pageData) return null;
 
-  const image =
-    pageData.images[Math.floor(Math.random() * pageData.images.length)];
-
   return (
     <Page
       fullWidthChildren={
         <div className={styles.image_wrap}>
-          <Asset imageSize={ImageSize.Large} image={image} />
+          <Asset
+            assetUrl="https://media.graphassets.com/drAQuAqiQNiMsXhrCjpm"
+            objectFit="contain"
+            imageSize={ImageSize.Large}
+          />
         </div>
       }
       hideNavigation
